@@ -1,4 +1,4 @@
-# test_vue
+# TodoList on VueJs
 
 ## Project setup
 ```
