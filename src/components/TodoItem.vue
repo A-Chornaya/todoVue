@@ -40,10 +40,13 @@
     }
 
     .rm {
-        background: rgba(175, 47, 47, 0.65);
+        background: rgba(175, 47, 47, 0.20);
         color: #fff;
         border-radius: 50%;
         font-weight: bold;
+    }
+    .rm:hover {
+      background: rgba(175, 47, 47, 0.65);
     }
 
     .done {
