@@ -31,9 +31,9 @@ export default {
 <style scoped>
   form {
     display: flex;
-    margin-top: 2rem;
+    margin-right: 10px;
   }
   input {
-    width: 400px;
+    width: 300px;
   }
 </style>
