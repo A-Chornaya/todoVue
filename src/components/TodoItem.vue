@@ -39,7 +39,7 @@
     }
 
     .rm {
-        background: red;
+        background: rgba(175, 47, 47, 0.65);
         color: #fff;
         border-radius: 50%;
         font-weight: bold;
