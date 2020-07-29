@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      if(this.title.trim()) {
+      if (this.title.trim()) {
         const newTodo = {
           id: Date.now(),
           title: this.title,
@@ -29,11 +29,12 @@ export default {
 </script>
 
 <style scoped>
-  form {
-    display: flex;
-    margin-right: 10px;
-  }
-  input {
-    width: 300px;
-  }
+form {
+  display: flex;
+  margin-right: 10px;
+}
+
+input {
+  width: 300px;
+}
 </style>
