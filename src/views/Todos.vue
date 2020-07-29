@@ -7,7 +7,7 @@
           @addTodo="addNewTodo"
       />
       <select v-model="filter">
-        <option value="all">All</option>
+        <option value="all" selected>All</option>
         <option value="active">Active</option>
         <option value="completed">Completed</option>
       </select>
@@ -28,46 +28,54 @@
 import TodoList from '@/components/TodoList'
 import AddTodo from '@/components/AddTodo'
 import Loader from '@/components/Loader'
+import { mapMutations } from 'vuex';
+
 export default {
-  name: 'App',
+  name: 'Todos',
   data() {
     return {
-      todos: [],
       loading: true,
-      filter: 'all',
     }
   },
   mounted() {
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=8')
-        .then(response => response.json())
-        .then(json => {
+    // fetch('https://jsonplaceholder.typicode.com/todos?_limit=8')
+    //     .then(response => response.json())
+    //     .then(json => {
+    //       // setTimeout(() => {
+    //       //   this.$store.state.todos = json
+    //       //   this.loading = false
+    //       // }, 1000)
+    //     })
+
           setTimeout(() => {
-            this.todos = json
             this.loading = false
           }, 1000)
-        })
   },
   components: {
     TodoList, AddTodo, Loader
   },
   computed: {
+    todos() {
+      return this.$store.state.todos
+    },
+    filter: {
+      get () {
+        return this.$store.state.filter
+      },
+      set (value) {
+        this.$store.commit('changeFilter', value)
+      }
+    },
     filteredTodos() {
-      if(this.filter === 'active') {
-        return  this.todos.filter(t => !t.completed)
-      }
-      else if(this.filter === 'completed') {
-        return  this.todos.filter(t => t.completed)
-      }
-      return this.todos
+      return this.$store.getters.filteredTodos
     }
   },
   methods: {
-    removeTodo(id) {
-      this.todos = this.todos.filter(t => t.id !== id)
-    },
-    addNewTodo(item) {
-      this.todos.push(item)
-    }
+    ...mapMutations([
+        'addNewTodo',
+        'removeTodo',
+        'changeFilter'
+    ])
   }
 }
 </script>
