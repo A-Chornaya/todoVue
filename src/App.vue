@@ -1,9 +1,25 @@
 <template>
   <div id="app">
     <h1 id="header">Todo List</h1>
-    <router-view />
+    <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  // created() {
+  //   const json = fetch('https://jsonplaceholder.typicode.com/todos?_limit=8')
+  //       .then(response => response.json())
+  //       .then(json => this.$store.commit('setTodos', json))
+  // },
+  async created() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=8')
+    const json = await response.json()
+    this.$store.commit('setTodos', json)
+    console.log(json)
+  },
+}
+</script>
 
 <style>
 #app {
@@ -16,6 +32,7 @@
   width: 100%;
   display: block;
 }
+
 #header {
   alignment: center;
   display: block;
